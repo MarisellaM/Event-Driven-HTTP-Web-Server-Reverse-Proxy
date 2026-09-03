@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments (Virtual Environments)
+venv/
+.env
+env/
+ENV/
+
+# OS generated files (Linux/macOS)
+.DS_Store
+.directory
+*.swp
+*~
+
+# VS Code specific files
+.vscode/
