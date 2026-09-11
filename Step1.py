@@ -1,3 +1,4 @@
+## Goal understand how the raw socket works 
 import socket 
 
 HOST = "localhost" 
@@ -5,14 +6,19 @@ PORT = 8080
 
 ## Hardcode the message to be sent to the server
 
-message = "Hello, Server!"
+message = "Hello, this is a test message!"
 ## Send the message to the server
 HARDCODED_MESSAGE = message.encode('utf-8')
 
-## handle the socket connection and send the message
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.connect((HOST, PORT))
-    s.sendall(HARDCODED_MESSAGE)
-    data = s.recv(1024)
-    print(f"Received: {data.decode('utf-8')}")
+def main(): 
+
+    """ Create the raw socket that just spawns a connection to the server to send the message 
+    .AF_INET is the address family for IPv4
+    .SOCK_STREAM is the socket type for TCP
+    These are used to create a TCP socket that can be used to send and receive data over the network."""
+
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    """ Restart the server with setsockopt to allow the socket to be reused. This is useful when the server is restarted and the socket is still in use. """
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     
