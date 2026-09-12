@@ -21,4 +21,15 @@ def main():
 
     """ Restart the server with setsockopt to allow the socket to be reused. This is useful when the server is restarted and the socket is still in use. """
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    
+
+    ## Binding the socket to the specified host and port. This allows the server to listen for incoming connections on the specified address and port. """
+    server_socket.bind((HOST, PORT))
+
+    ## The mac queue that is allowed to wait for connecting 
+    server_socket.listen(5)
+
+    ## Accepting a connection and receiving the message from the client. 
+    print(f"Server is listening on {HOST}:{PORT}...")
+
+    while True: 
+        
